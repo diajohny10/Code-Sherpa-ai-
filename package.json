@@ -1,0 +1,37 @@
+{
+  "name": "code-sherpa-ai",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "prepare:python": "node scripts/prepare-python-runtime.mjs",
+    "check:python": "node scripts/check-python-runtime.mjs",
+    "prebuild": "npm run check:python",
+    "test:execution": "npm run check:python && node --experimental-strip-types --test tests/pythonExecution.test.mjs",
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "npm run test:unit && npm run test:react && npm run test:execution",
+    "test:unit": "node --experimental-strip-types --test tests/primeWorkflow.test.mjs tests/learningApi.test.mjs tests/coverage.test.mjs tests/bugDetective.test.mjs tests/progress.test.mjs",
+    "test:react": "vitest run --config vitest.config.ts"
+  },
+  "dependencies": {
+    "@bjorn3/browser_wasi_shim": "0.4.2",
+    "fflate": "0.8.3",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/react": "^16.3.3",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^6.1.2",
+    "jsdom": "^30.1.3",
+    "playwright": "1.64.1",
+    "typescript": "~5.6.2",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
+  }
+}

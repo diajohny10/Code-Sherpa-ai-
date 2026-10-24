@@ -1,0 +1,70 @@
+.sherpa-entry-background { pointer-events: none; user-select: none; }
+.sherpa-entry {
+  --entry-ink: #eef0f5;
+  --entry-violet: #c5b7ff;
+  --entry-mint: #a3e9cd;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  overflow: auto;
+  padding: max(76px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(28px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
+  color: var(--entry-ink);
+  background: radial-gradient(ellipse at 50% 28%, #242536 0%, #101216 68%);
+  font-family: var(--font-ui, 'Segoe UI', sans-serif);
+  isolation: isolate;
+  letter-spacing: 0;
+}
+.sherpa-entry *, .sherpa-entry *::before, .sherpa-entry *::after { box-sizing: border-box; letter-spacing: 0; }
+.sherpa-entry button {
+  min-height: 44px;
+  border-radius: 6px;
+  font: 600 14px/1.5 var(--font-ui, 'Segoe UI', sans-serif);
+  cursor: pointer;
+}
+.sherpa-entry button:focus-visible { outline: 2px solid var(--entry-mint); outline-offset: 5px; }
+.sherpa-entry .sherpa-entry-skip {
+  position: absolute;
+  top: max(16px, env(safe-area-inset-top));
+  right: max(20px, env(safe-area-inset-right));
+  padding: 10px 14px;
+  color: var(--entry-ink);
+  background: #20242c;
+  border: 1px solid #596071;
+}
+.sherpa-entry-scene { width: min(720px, 100%); text-align: center; }
+.sherpa-entry-summit { display: block; width: 100%; height: auto; max-height: 230px; margin: 0 auto 16px; overflow: visible; }
+.sherpa-entry-ridge-back { stroke: #606779; stroke-width: 1; opacity: .6; }
+.sherpa-entry-ridge { stroke: var(--entry-violet); stroke-width: 1.5; animation: sherpa-entry-rise 1.5s ease-out both; }
+.sherpa-entry-snow { stroke: var(--entry-violet); stroke-width: 1; }
+.sherpa-entry-trail { stroke: var(--entry-mint); stroke-width: 2.5; stroke-dasharray: 1; stroke-dashoffset: 1; animation: sherpa-entry-ascent 2.7s .15s ease-in-out forwards; }
+.sherpa-entry-flag { stroke: var(--entry-mint); stroke-width: 2; animation: sherpa-entry-rise .7s 2.5s both; }
+.sherpa-entry .sherpa-entry-eyebrow { margin: 0 0 10px; color: var(--entry-mint); font-size: 12px; font-weight: 600; }
+.sherpa-entry h1 { margin: 0; color: var(--entry-ink); font-size: 48px; font-weight: 650; line-height: 1.2; }
+.sherpa-entry-copy h1 { animation: sherpa-entry-title 1s .2s ease-out both; }
+.sherpa-entry h1 span { color: var(--entry-violet); }
+.sherpa-entry .sherpa-entry-description { margin: 14px 0 22px; color: #c0c6d2; font-size: 18px; line-height: 1.5; }
+.sherpa-entry-console { width: min(320px, 100%); margin: 0 auto 26px; padding: 12px 18px; text-align: left; border-left: 2px solid #69617f; background: #181b21; animation: sherpa-entry-rise .8s .6s both; }
+.sherpa-entry-console > span { display: block; color: #b1b8c6; font: 11px/1.5 var(--font-code, Consolas, monospace); margin-bottom: 8px; }
+.sherpa-entry-console code { display: block; color: #e2e7ef; font: 13px/1.8 var(--font-code, Consolas, monospace); white-space: pre-wrap; overflow-wrap: anywhere; }
+.sherpa-entry-console code span { color: var(--entry-violet); }
+.sherpa-entry .sherpa-entry-enter { display: inline-flex; align-items: center; justify-content: center; gap: 14px; padding: 12px 22px; color: #14131b; background: var(--entry-violet); border: 1px solid var(--entry-violet); }
+.sherpa-entry .sherpa-entry-enter:hover { background: #d8ceff; }
+.sherpa-entry .sherpa-entry-skip:hover { background: #303541; }
+@keyframes sherpa-entry-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes sherpa-entry-ascent { to { stroke-dashoffset: 0; } }
+@keyframes sherpa-entry-title { from { opacity: 0; transform: translateY(9px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@media (max-width: 480px) {
+  .sherpa-entry h1 { font-size: 34px; }
+  .sherpa-entry-summit { margin-bottom: 24px; }
+  .sherpa-entry .sherpa-entry-description { font-size: 16px; }
+}
+@media (max-height: 640px) {
+  .sherpa-entry-summit { max-height: 110px; margin-bottom: 12px; }
+  .sherpa-entry-console { margin-bottom: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sherpa-entry *, .sherpa-entry *::before, .sherpa-entry *::after { animation: none !important; }
+  .sherpa-entry-trail { stroke-dashoffset: 0; }
+}
